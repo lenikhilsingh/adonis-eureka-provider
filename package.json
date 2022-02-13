@@ -1,0 +1,55 @@
+{
+  "name": "adonis-eureka-provider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/providers/EurekaProvider.js",
+  "scripts": {
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build",
+    "build": "npm run compile && npm run copyfiles"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenikhilsingh/adonis-eureka-provider.git"
+  },
+  "author": "Nikhil Singh <nikhil@cidroy.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lenikhilsingh/adonis-eureka-provider/issues"
+  },
+  "homepage": "https://github.com/lenikhilsingh/adonis-eureka-provider#readme",
+  "devDependencies": {
+    "@adonisjs/core": "^5.4.2",
+    "@adonisjs/mrm-preset": "^5.0.2",
+    "@types/ip": "^1.1.0",
+    "copyfiles": "^2.4.1",
+    "mrm": "^3.0.10"
+  },
+  "dependencies": {
+    "@adonisjs/sink": "^5.2.1",
+    "axios": "^0.25.0",
+    "ip": "^1.1.5",
+    "request": "^2.88.2"
+  },
+  "adonisjs": {
+    "instructionsMd": "./build/instructions.md",
+    "templates": {
+      "config": [
+        {
+          "src": "config.txt",
+          "dest": "eureka"
+        }
+      ]
+    },
+    "providers": [
+      "adonis-eureka-provider"
+    ],
+    "env": {
+      "EUREKA_CLIENT_NAME": "YOUR_APPLICATION_NAME",
+      "EUREKA_SERVER_IP": "0.0.0.0",
+      "EUREKA_SERVER_PORT": "8761"
+    }
+  }
+}

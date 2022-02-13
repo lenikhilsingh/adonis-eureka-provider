@@ -1,0 +1,35 @@
+import ip from "ip"
+import Env from '@ioc:Adonis/Core/Env'
+
+const appName = Env.get("EUREKA_CLIENT_NAME")
+const instanceId = appName + `:${new Date().getTime()}`
+var data = JSON.stringify({
+    instance: {
+        hostName: ip.address(),
+        app: appName,
+        vipAddress: appName,
+        instanceId: instanceId,
+        ipAddr: ip.address(),
+        status: "UP",
+        port: {
+            "$": Env.get("PORT"),
+            "@enabled": true
+        },
+        dataCenterInfo: {
+            "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+            "name": "MyOwn"
+        }
+    }
+});
+const eurekaConfig = {
+    method: 'post',
+    url: "http://"+Env.get("EUREKA_SERVER_IP")+":"+Env.get("EUREKA_SERVER_PORT")+"/eureka/apps/"+appName.toLowerCase(),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    appName,
+    instanceId,
+    data: data
+};
+
+export default eurekaConfig
