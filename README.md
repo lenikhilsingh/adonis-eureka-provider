@@ -1,5 +1,6 @@
 # adonis-eureka-provider
 
+Adonisjs Eureka provider to register application on boot with Eureka Server(Or any service Registry)
 
 Installation Command: 
 
